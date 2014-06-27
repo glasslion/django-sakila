@@ -1,12 +1,3 @@
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Remove `managed = False` lines if you wish to allow Django to create and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
-#
-# Also note: You'll have to insert the output of 'django-admin.py sqlcustom [appname]'
-# into your database.
 from __future__ import unicode_literals
 
 from django.db import models
@@ -16,8 +7,11 @@ class Actor(models.Model):
     first_name = models.CharField(max_length=45)
     last_name = models.CharField(max_length=45)
     last_update = models.DateTimeField()
+
+    def __unicode__(self):
+        return u'%s %s' % (self.first_name, self.last_name)
+
     class Meta:
-        managed = False
         db_table = 'actor'
 
 
@@ -30,17 +24,22 @@ class Address(models.Model):
     postal_code = models.CharField(max_length=10, blank=True)
     phone = models.CharField(max_length=20)
     last_update = models.DateTimeField()
-    class Meta:
-        managed = False
-        db_table = 'address'
 
+    def __unicode__(self):
+        return u'%s %s, tel: %s' % (self.address, self.address2, self.phone)
+
+    class Meta:
+        db_table = 'address'
 
 class Category(models.Model):
     category_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=25)
     last_update = models.DateTimeField()
+
+    def __unicode__(self):
+        return u'%s' % self.name
+
     class Meta:
-        managed = False
         db_table = 'category'
 
 class City(models.Model):
@@ -48,16 +47,22 @@ class City(models.Model):
     city = models.CharField(max_length=50)
     country = models.ForeignKey('Country')
     last_update = models.DateTimeField()
+
+    def __unicode__(self):
+        return u'%s, %s' % (self.city, self.country)
+    
     class Meta:
-        managed = False
         db_table = 'city'
 
 class Country(models.Model):
     country_id = models.IntegerField(primary_key=True)
     country = models.CharField(max_length=50)
     last_update = models.DateTimeField()
+
+    def __unicode__(self):
+        return u'%s' % self.country
+
     class Meta:
-        managed = False
         db_table = 'country'
 
 class Customer(models.Model):
@@ -71,8 +76,11 @@ class Customer(models.Model):
     create_date = models.DateField()
     last_update = models.DateTimeField(blank=True, null=True)
     active = models.IntegerField(blank=True, null=True)
+
+    def __unicode__(self):
+        return u'%s %s' % (self.first_name, self.last_name)
+
     class Meta:
-        managed = False
         db_table = 'customer'
 
 
@@ -91,24 +99,27 @@ class Film(models.Model):
     last_update = models.DateTimeField()
     special_features = models.TextField(blank=True) # This field type is a guess.
     fulltext = models.TextField() # This field type is a guess.
+
+    def __unicode__(self):
+        return u'%s' % self.title
+
     class Meta:
-        managed = False
         db_table = 'film'
 
 class FilmActor(models.Model):
     actor = models.ForeignKey(Actor)
     film = models.ForeignKey(Film)
     last_update = models.DateTimeField()
+
     class Meta:
-        managed = False
         db_table = 'film_actor'
 
 class FilmCategory(models.Model):
     film = models.ForeignKey(Film)
     category = models.ForeignKey(Category)
     last_update = models.DateTimeField()
+
     class Meta:
-        managed = False
         db_table = 'film_category'
 
 
@@ -117,16 +128,22 @@ class Inventory(models.Model):
     film = models.ForeignKey(Film)
     store = models.ForeignKey('Store')
     last_update = models.DateTimeField()
+
+    def __unicode__(self):
+        return u'No.%d' % self.inventory_id
+
     class Meta:
-        managed = False
         db_table = 'inventory'
 
 class Language(models.Model):
     language_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=20)
     last_update = models.DateTimeField()
+
+    def __unicode__(self):
+        return u'%s' % self.name
+
     class Meta:
-        managed = False
         db_table = 'language'
 
 
@@ -137,8 +154,12 @@ class Payment(models.Model):
     rental = models.ForeignKey('Rental')
     amount = models.DecimalField(max_digits=5, decimal_places=2)
     payment_date = models.DateTimeField()
+
+
+    def __unicode__(self):
+        return u'%s' % self.payment_id
+
     class Meta:
-        managed = False
         db_table = 'payment'
 
 class Rental(models.Model):
@@ -149,18 +170,12 @@ class Rental(models.Model):
     return_date = models.DateTimeField(blank=True, null=True)
     staff = models.ForeignKey('Staff')
     last_update = models.DateTimeField()
-    class Meta:
-        managed = False
-        db_table = 'rental'
 
-class SouthMigrationhistory(models.Model):
-    id = models.IntegerField(primary_key=True)
-    app_name = models.CharField(max_length=255)
-    migration = models.CharField(max_length=255)
-    applied = models.DateTimeField()
+    def __unicode__(self):
+        return u'No.%d' % self.rental_id
+
     class Meta:
-        managed = False
-        db_table = 'south_migrationhistory'
+        db_table = 'rental'
 
 class Staff(models.Model):
     staff_id = models.IntegerField(primary_key=True)
@@ -174,8 +189,11 @@ class Staff(models.Model):
     password = models.CharField(max_length=40, blank=True)
     last_update = models.DateTimeField()
     picture = models.BinaryField(blank=True, null=True)
+
+    def __unicode__(self):
+        return u'%s %s (%s)' % (self.first_name, self.last_name, self.username)
+
     class Meta:
-        managed = False
         db_table = 'staff'
 
 class Store(models.Model):
@@ -183,7 +201,10 @@ class Store(models.Model):
     manager_staff = models.ForeignKey(Staff, unique=True, related_name='store_managed_by_me')
     address = models.ForeignKey(Address)
     last_update = models.DateTimeField()
+
+    def __unicode__(self):
+        return u'No.%d' % self.store_id
+
     class Meta:
-        managed = False
         db_table = 'store'
 
