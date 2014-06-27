@@ -7,6 +7,7 @@ class Actor(models.Model):
     first_name = models.CharField(max_length=45)
     last_name = models.CharField(max_length=45)
     last_update = models.DateTimeField()
+    films = models.ManyToManyField('Film', through='FilmActor')
 
     def __unicode__(self):
         return u'%s %s' % (self.first_name, self.last_name)
@@ -35,6 +36,7 @@ class Category(models.Model):
     category_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=25)
     last_update = models.DateTimeField()
+    films = models.ManyToManyField('Film', through='FilmCategory')
 
     def __unicode__(self):
         return u'%s' % self.name
@@ -99,6 +101,8 @@ class Film(models.Model):
     last_update = models.DateTimeField()
     special_features = models.TextField(blank=True) # This field type is a guess.
     fulltext = models.TextField() # This field type is a guess.
+    categories = models.ManyToManyField(Category, through='FilmCategory')
+    actors = models.ManyToManyField(Actor, through='FilmActor')
 
     def __unicode__(self):
         return u'%s' % self.title
