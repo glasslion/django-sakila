@@ -75,8 +75,18 @@ def patch():
             stdout=patchfile
         )
 
-    print "Apply the path with `patch -d ../testsite -p0 -i ../testsite.patch`"
     rmtree(tmp_dir)
+    
+    print "Applying the path with `patch -d ../testsite -p0 -i ../testsite.patch`"
+
+    call([
+        'patch',
+        '-d',
+        TEST_SITE_PATH,
+        '-i',
+        join(REPO_ROOT,'testsite.patch'),
+        '-p0'
+    ])
 
 
 def main():
