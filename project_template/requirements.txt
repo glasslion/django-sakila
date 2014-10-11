@@ -6,3 +6,5 @@ logutils==0.3.3
 South==0.8.4
 django-debug-toolbar==1.2.1
 coverage==3.7.1
+django-xadmin
+django-reversion
