@@ -53,5 +53,5 @@ coverage.xml
 docs/_build/
 
 # This project
-testsite
-testsite.patch
+dev_site
+dev_site.patch
