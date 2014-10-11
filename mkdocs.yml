@@ -1,0 +1,7 @@
+site_name: Django Sakila
+
+theme: readthedocs
+
+pages:
+- [index.md, Home]
+- [models.md, Builtin Models]
