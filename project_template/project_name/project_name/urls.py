@@ -9,8 +9,6 @@ xadmin.autodiscover()
 from django.contrib import admin
 admin.autodiscover()
 
-from dolphin.views import FilmListView
-
 
 urlpatterns = patterns('',
     # Examples:
@@ -21,8 +19,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-
-    url(r'^films/$', FilmListView.as_view()),
 )
 
 # Uncomment the next line to serve media files in dev.

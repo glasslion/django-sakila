@@ -210,10 +210,12 @@ DJANGO_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
-    'dolphin',
     'xadmin',
     'crispy_forms',
     'reversion',
+    'films',
+    'addresses',
+    'rentals',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
