@@ -1,6 +1,8 @@
 import xadmin
 
-from django.db.models import get_models, get_app
+from .models import Actor, Category, Film, Language
 
-for model in get_models(get_app('films')):
-    xadmin.site.register(model)
+xadmin.site.register(Actor)
+xadmin.site.register(Category)
+xadmin.site.register(Film)
+xadmin.site.register(Language)

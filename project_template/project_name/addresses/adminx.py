@@ -1,6 +1,8 @@
 import xadmin
 
-from django.db.models import get_models, get_app
+from .models import Address, City, Country
 
-for model in get_models(get_app('addresses')):
-    xadmin.site.register(model)
+
+xadmin.site.register(Address)
+xadmin.site.register(City)
+xadmin.site.register(Country)

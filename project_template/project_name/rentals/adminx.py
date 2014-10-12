@@ -1,6 +1,11 @@
 import xadmin
 
-from django.db.models import get_models, get_app
+from .models import Customer, Inventory, Rental, Payment, Staff,  Store
 
-for model in get_models(get_app('rentals')):
-    xadmin.site.register(model)
+
+xadmin.site.register(Customer)
+xadmin.site.register(Inventory)
+xadmin.site.register(Rental)
+xadmin.site.register(Payment)
+xadmin.site.register(Staff)
+xadmin.site.register(Store)
