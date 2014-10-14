@@ -15,7 +15,7 @@ class Customer(models.Model):
     address = models.ForeignKey(Address)
     activebool = models.BooleanField()
     create_date = models.DateField()
-    last_update = models.DateTimeField(blank=True, null=True)
+    last_update = models.DateTimeField(auto_now=True)
     active = models.IntegerField(blank=True, null=True)
 
     def __unicode__(self):
@@ -29,7 +29,7 @@ class Inventory(models.Model):
     inventory_id = models.AutoField(primary_key=True)
     film = models.ForeignKey(Film)
     store = models.ForeignKey('Store')
-    last_update = models.DateTimeField()
+    last_update = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return u'No.%d' % self.inventory_id
@@ -45,7 +45,7 @@ class Rental(models.Model):
     customer = models.ForeignKey(Customer)
     return_date = models.DateTimeField(blank=True, null=True)
     staff = models.ForeignKey('Staff')
-    last_update = models.DateTimeField()
+    last_update = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return u'No.%d' % self.rental_id
@@ -79,7 +79,7 @@ class Staff(models.Model):
     active = models.BooleanField()
     username = models.CharField(max_length=16)
     password = models.CharField(max_length=40, blank=True)
-    last_update = models.DateTimeField()
+    last_update = models.DateTimeField(auto_now=True)
     picture = models.BinaryField(blank=True, null=True)
 
     def __unicode__(self):
@@ -95,7 +95,7 @@ class Store(models.Model):
         Staff, unique=True, related_name='store_managed_by_me'
     )
     address = models.ForeignKey(Address)
-    last_update = models.DateTimeField()
+    last_update = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return u'No.%d' % self.store_id
