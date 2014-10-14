@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Actor(models.Model):
-    actor_id = models.IntegerField(primary_key=True)
+    actor_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=45)
     last_name = models.CharField(max_length=45)
     last_update = models.DateTimeField()
@@ -18,7 +18,7 @@ class Actor(models.Model):
 
 
 class Category(models.Model):
-    category_id = models.IntegerField(primary_key=True)
+    category_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=25)
     last_update = models.DateTimeField()
     films = models.ManyToManyField('Film', through='FilmCategory')
@@ -31,7 +31,7 @@ class Category(models.Model):
 
 
 class Film(models.Model):
-    film_id = models.IntegerField(primary_key=True)
+    film_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     release_year = models.IntegerField(blank=True, null=True)
@@ -76,7 +76,7 @@ class FilmCategory(models.Model):
 
 
 class Language(models.Model):
-    language_id = models.IntegerField(primary_key=True)
+    language_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=20)
     last_update = models.DateTimeField()
 

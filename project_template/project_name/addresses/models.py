@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Address(models.Model):
-    address_id = models.IntegerField(primary_key=True)
+    address_id = models.AutoField(primary_key=True)
     address = models.CharField(max_length=50)
     address2 = models.CharField(max_length=50, blank=True)
     district = models.CharField(max_length=20)
@@ -21,7 +21,7 @@ class Address(models.Model):
 
 
 class City(models.Model):
-    city_id = models.IntegerField(primary_key=True)
+    city_id = models.AutoField(primary_key=True)
     city = models.CharField(max_length=50)
     country = models.ForeignKey('Country')
     last_update = models.DateTimeField()
@@ -34,7 +34,7 @@ class City(models.Model):
 
 
 class Country(models.Model):
-    country_id = models.IntegerField(primary_key=True)
+    country_id = models.AutoField(primary_key=True)
     country = models.CharField(max_length=50)
     last_update = models.DateTimeField()
 

@@ -7,7 +7,7 @@ from films.models import Film
 
 
 class Customer(models.Model):
-    customer_id = models.IntegerField(primary_key=True)
+    customer_id = models.AutoField(primary_key=True)
     store = models.ForeignKey('Store')
     first_name = models.CharField(max_length=45)
     last_name = models.CharField(max_length=45)
@@ -26,7 +26,7 @@ class Customer(models.Model):
 
 
 class Inventory(models.Model):
-    inventory_id = models.IntegerField(primary_key=True)
+    inventory_id = models.AutoField(primary_key=True)
     film = models.ForeignKey(Film)
     store = models.ForeignKey('Store')
     last_update = models.DateTimeField()
@@ -39,7 +39,7 @@ class Inventory(models.Model):
 
 
 class Rental(models.Model):
-    rental_id = models.IntegerField(primary_key=True)
+    rental_id = models.AutoField(primary_key=True)
     rental_date = models.DateTimeField()
     inventory = models.ForeignKey(Inventory)
     customer = models.ForeignKey(Customer)
@@ -55,7 +55,7 @@ class Rental(models.Model):
 
 
 class Payment(models.Model):
-    payment_id = models.IntegerField(primary_key=True)
+    payment_id = models.AutoField(primary_key=True)
     customer = models.ForeignKey(Customer)
     staff = models.ForeignKey('Staff')
     rental = models.ForeignKey('Rental')
@@ -70,7 +70,7 @@ class Payment(models.Model):
 
 
 class Staff(models.Model):
-    staff_id = models.IntegerField(primary_key=True)
+    staff_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=45)
     last_name = models.CharField(max_length=45)
     address = models.ForeignKey(Address)
@@ -90,7 +90,7 @@ class Staff(models.Model):
 
 
 class Store(models.Model):
-    store_id = models.IntegerField(primary_key=True)
+    store_id = models.AutoField(primary_key=True)
     manager_staff = models.ForeignKey(
         Staff, unique=True, related_name='store_managed_by_me'
     )
